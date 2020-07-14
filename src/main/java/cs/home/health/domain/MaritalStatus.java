@@ -27,7 +27,7 @@ public class MaritalStatus implements Serializable {
 	@Id
 	private Long id;
 
-	private Long code;
+	private Integer code;
 
 	private String title;
 

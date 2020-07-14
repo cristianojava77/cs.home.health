@@ -1,29 +1,24 @@
-package cs.home.health.domain;
+package cs.home.health.adapter.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Data
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "tbl_country")
-public class Country implements Serializable {
+public class CountryDTO implements Serializable {
 
-	private static final long serialVersionUID = 2065829407246890806L;
+	private static final long serialVersionUID = -654206246878189571L;
 
-	@Id
 	private Long id;
 
 	private Integer code;

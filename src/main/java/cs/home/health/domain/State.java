@@ -29,7 +29,7 @@ public class State implements Serializable {
 	private Long id;
 
 	@Column(name = "code_country")
-	private Long codeCountry;
+	private Integer codeCountry;
 
 	private String abbreviation;
 
