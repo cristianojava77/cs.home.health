@@ -1,0 +1,33 @@
+logging:
+  level:
+    root: info
+    org.springframework.web: info
+    org.springframework.ws: info
+    cs.home.health: info
+server:
+  port: 8081
+spring:
+  application:
+    name: health
+  datasource:
+    driverClassName: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/dbhealth
+    username: admin
+    password: admin
+    sqlScriptEncoding: UTF-8
+    hikari:
+      minimum-idle: 4
+      maximum-pool-size: 16
+      connection-timeout: 30000
+      idle-timeout: 300000
+      max-lifetime: 600000
+  devtools:
+    add-properties: true
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+      fail-on-empty-beans: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: true

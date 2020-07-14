@@ -1,0 +1,38 @@
+logging:
+  level:
+    root: info
+    org.springframework.web: info
+    org.springframework.ws: info
+    rb.la.forms: info
+server:
+  port: 8080
+spring:
+  application:
+    name: sig-cms
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:dbsigcms
+    username: sigm
+    password: sigm
+    sqlScriptEncoding: UTF-8
+    hikari:
+      minimum-idle: 4
+      maximum-pool-size: 16
+      connection-timeout: 30000
+      idle-timeout: 300000
+      max-lifetime: 600000
+  devtools:
+    add-properties: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+      fail-on-empty-beans: false
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: true
