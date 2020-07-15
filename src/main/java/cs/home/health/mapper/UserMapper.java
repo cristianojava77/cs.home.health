@@ -16,7 +16,13 @@ public class UserMapper {
 		return User.builder()
 				.id(request.getId())
 				.active(request.getActive())
-				.name(request.getName())
+				.attempts(request.getAttempts())
+				.blocked(request.getBlocked())
+				.dateBlocked(request.getDateBlocked())
+				.dateLastLogin(request.getDateLastLogin())
+				.nickname(request.getNickname())
+				.password(request.getPassword())
+				.username(request.getUsername())
 				.build();
 		// @formatter:on
 	}
@@ -34,7 +40,13 @@ public class UserMapper {
 		return UserDTO.builder()
 				.id(domain.getId())
 				.active(domain.getActive())
-				.name(domain.getName())
+				.attempts(domain.getAttempts())
+				.blocked(domain.getBlocked())
+				.dateBlocked(domain.getDateBlocked())
+				.dateLastLogin(domain.getDateLastLogin())
+				.nickname(domain.getNickname())
+				.password(domain.getPassword())
+				.username(domain.getUsername())
 				.build();
 		// @formatter:on
 	}

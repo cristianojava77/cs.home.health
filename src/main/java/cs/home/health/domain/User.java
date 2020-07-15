@@ -1,7 +1,9 @@
 package cs.home.health.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,8 +32,27 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotEmpty(message = "Name is mandatory")
-	private String name;
+	@NotEmpty(message = "Nickname is mandatory")
+	private String nickname;
+
+	@NotEmpty(message = "Cannot create an user with a blank username")
+	@Column(nullable = false, unique = true)
+	private String username;
+
+	@NotEmpty(message = "Cannot create an user with a blank password")
+	private String password;
+
+	@Column(name = "date_last_login")
+	private Date dateLastLogin;
+
+	@Builder.Default
+	private Integer attempts = 0;
+
+	@Builder.Default
+	private Boolean blocked = false;
+
+	@Column(name = "date_blocked")
+	private Date dateBlocked;
 
 	@Builder.Default
 	private Boolean active = true;

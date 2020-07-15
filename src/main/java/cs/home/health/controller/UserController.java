@@ -47,4 +47,16 @@ public class UserController {
 		return "Request deleted.";
 	}
 
+	@PostMapping("/login")
+	public String login(@RequestBody UserDTO request) {
+		// service.save(mapper.map(request));
+		return "Login processed";
+	}
+
+	@PostMapping("/logout")
+	public String logout(@RequestBody UserDTO request) {
+		// service.deleteById(id);
+		return "Logout processed";
+	}
+
 }

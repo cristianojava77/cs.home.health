@@ -1,6 +1,7 @@
 package cs.home.health.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,17 @@ public class UserService {
 	public List<User> findAll() {
 		log.info("Loading all entries.");
 		return repository.findAll();
+	}
+
+	/**
+	 * Load a single user entry based on its username.
+	 *
+	 * @param username The username of the user entry to be loaded.
+	 * @return
+	 */
+	public Optional<User> findByUsername(String username) {
+		log.info("Loading a single entry by username: {}", username);
+		return repository.findByUsername(username);
 	}
 
 	/**
@@ -55,6 +67,17 @@ public class UserService {
 	public void deleteById(Long id) {
 		log.info("Deleting the entry {}.", id);
 		repository.deleteById(id);
+	}
+
+	/**
+	 * Validate the password according to the rules setted in the Yalm configuration file.
+	 * 
+	 * @param password The password to be validated
+	 * @return <b>True</b> if the password is acceptable, or <b>False</b> otherwise.
+	 */
+	public boolean validPassword(String password) {
+		// TODO: set the rules in the configuration file, and read them here.
+		return true;
 	}
 
 }

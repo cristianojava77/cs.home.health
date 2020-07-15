@@ -1,6 +1,7 @@
 package cs.home.health.adapter.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,7 +22,21 @@ public class UserDTO implements Serializable {
 
 	private Long id;
 
-	private String name;
+	private String nickname;
+
+	private String username;
+
+	private String password;
+
+	private Date dateLastLogin;
+
+	@Builder.Default
+	private Integer attempts = 0;
+
+	@Builder.Default
+	private Boolean blocked = false;
+
+	private Date dateBlocked;
 
 	@Builder.Default
 	private Boolean active = true;

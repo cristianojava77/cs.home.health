@@ -1,15 +1,13 @@
--- Remove this line in production!
--- .....................................................................
-
--- DROP DATABASE IF EXISTS dbsigm;
-
 -- Create database
 -- .....................................................................
 
--- CREATE DATABASE dbsigm CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
+DROP DATABASE IF EXISTS dbhealth;
+
+CREATE DATABASE dbhealth CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
 
 -- Create tables
 -- .....................................................................
+USE dbhealth;
 
 DROP TABLE IF EXISTS `tbl_address`;
 
@@ -27,7 +25,7 @@ CREATE TABLE `tbl_address` (
   `zipcode` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_address_iduser` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 DROP TABLE IF EXISTS `tbl_country`;
 
@@ -39,24 +37,9 @@ CREATE TABLE `tbl_country` (
   `language` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
-DROP TABLE IF EXISTS ``;
-
-CREATE TABLE `tbl_login` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `attempts` int(11) DEFAULT NULL,
-  `blocked` bit(1) DEFAULT NULL,
-  `date_blocked` datetime(6) DEFAULT NULL,
-  `date_last_login` datetime(6) DEFAULT NULL,
-  `id_user` bigint(20) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idx_login_iduser` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-DROP TABLE IF EXISTS ``;
+DROP TABLE IF EXISTS `tbl_marital_status`;
 
 CREATE TABLE `tbl_marital_status` (
   `id` bigint(20) NOT NULL,
@@ -65,9 +48,9 @@ CREATE TABLE `tbl_marital_status` (
   `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_maritalstatus_code` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
-DROP TABLE IF EXISTS ``;
+DROP TABLE IF EXISTS `tbl_measurement`;
 
 CREATE TABLE `tbl_measurement` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -87,9 +70,9 @@ CREATE TABLE `tbl_measurement` (
   `weight` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_measurement_iduser` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
-DROP TABLE IF EXISTS ``;
+DROP TABLE IF EXISTS `tbl_person`;
 
 CREATE TABLE `tbl_person` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -104,9 +87,19 @@ CREATE TABLE `tbl_person` (
   `phone_work` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_person_iduser` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
-DROP TABLE IF EXISTS ``;
+DROP TABLE IF EXISTS `tbl_role`;
+
+CREATE TABLE `tbl_role` (
+  `id` bigint(20) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `active` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+DROP TABLE IF EXISTS `tbl_state`;
 
 CREATE TABLE `tbl_state` (
   `id` bigint(20) NOT NULL,
@@ -116,14 +109,22 @@ CREATE TABLE `tbl_state` (
   `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_state_codecountry` (`code_country`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
-DROP TABLE IF EXISTS ``;
+DROP TABLE IF EXISTS `tbl_user`;
+
+-- dbhealth.tbl_user definition
 
 CREATE TABLE `tbl_user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `active` bit(1) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
+  `attempts` int(11) DEFAULT NULL,
+  `blocked` bit(1) DEFAULT NULL,
+  `date_blocked` datetime(6) DEFAULT NULL,
+  `date_last_login` datetime(6) DEFAULT NULL,
+  `nickname` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `username` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
+);

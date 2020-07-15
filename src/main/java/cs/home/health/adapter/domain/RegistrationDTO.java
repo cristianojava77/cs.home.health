@@ -19,7 +19,7 @@ public class RegistrationDTO implements Serializable {
 
 	private static final long serialVersionUID = 3997448997879286177L;
 
-	private String name;
+	private String nickname;
 
 	private String username;
 

@@ -1,6 +1,7 @@
 -- ----------------------------------------------------------------
 -- INITIAL SETUP ONLY, DO NOT RE-RUN!
 -- ----------------------------------------------------------------
+USE dbhealth;
 
 -- setting up data
 insert into tbl_country (id, code, language, title, abbreviation, active) values
