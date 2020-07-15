@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,7 +35,7 @@ public class Login implements Serializable {
 	private Long id;
 
 	@Column(name = "id_user")
-	@NotEmpty(message = "User not provided")
+	@NotNull(message = "User not provided")
 	private Long idUser;
 
 	@NotEmpty(message = "Cannot create an user with a blank username")

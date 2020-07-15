@@ -42,9 +42,9 @@ public class AddressService {
 	 *
 	 * @param request The entry to be persisted.
 	 */
-	public void save(Address request) {
+	public Address save(Address request) {
 		log.info("Persisting the entry: {}", request);
-		repository.save(request);
+		return repository.save(request);
 	}
 
 	/**

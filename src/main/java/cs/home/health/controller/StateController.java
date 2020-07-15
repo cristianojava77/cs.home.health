@@ -1,6 +1,8 @@
 package cs.home.health.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cs.home.health.adapter.domain.StateDTO;
+import cs.home.health.exception.EntryNotFoundException;
 import cs.home.health.mapper.StateMapper;
 import cs.home.health.service.StateService;
 
@@ -17,20 +20,34 @@ import cs.home.health.service.StateService;
 @RestController
 public class StateController {
 
+	private List<StateDTO> preloadedList = new ArrayList<>();
+
 	@Autowired
-	private StateService stateService;
+	private StateService service;
 
 	@Autowired
 	private StateMapper mapper;
 
-	@GetMapping
-	public List<StateDTO> getAll(@RequestParam Integer codeCountry) {
-		return mapper.mapResponse(stateService.findAllByCodeCountry(codeCountry));
+	@GetMapping("/single/{id}")
+	public StateDTO findSingle(@PathVariable Long id) {
+		preload();
+		return preloadedList.stream().filter(s -> (id.equals(s.getId()))).findFirst().orElseThrow(() -> new EntryNotFoundException("Cannot find entry based on the received id."));
+
 	}
 
-	@GetMapping("/{id}")
-	public StateDTO getSingle(@PathVariable("id") Long id) {
-		return mapper.map(stateService.getOne(id));
+	@GetMapping
+	public List<StateDTO> findAll(@RequestParam Integer countrycode) {
+		preload();
+		return preloadedList.stream().filter(s -> countrycode.equals(s.getCodeCountry())).collect(Collectors.toList());
+	}
+
+	/**
+	 * Load from database and store in memory, to avoid unnecessary database hits.
+	 */
+	private void preload() {
+		if (preloadedList.isEmpty()) {
+			preloadedList = mapper.mapResponse(service.findAllByCodeCountry(null));
+		}
 	}
 
 }

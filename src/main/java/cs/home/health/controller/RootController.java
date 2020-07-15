@@ -10,7 +10,7 @@ public class RootController {
 
 	@GetMapping
 	public String getVersion() {
-		return "SIGM Controller - version 0.0.1 (alpha)";
+		return "SIG Health - version 0.0.1 (alpha)";
 	}
 
 }

@@ -42,9 +42,9 @@ public class UserService {
 	 *
 	 * @param request The entry to be persisted.
 	 */
-	public void save(User request) {
+	public User save(User request) {
 		log.info("Persisting the entry: {}", request);
-		repository.save(request);
+		return repository.save(request);
 	}
 
 	/**

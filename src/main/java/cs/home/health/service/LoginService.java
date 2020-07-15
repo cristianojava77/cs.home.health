@@ -42,9 +42,9 @@ public class LoginService {
 	 *
 	 * @param request The entry to be persisted.
 	 */
-	public void save(Login request) {
+	public Login save(Login request) {
 		log.info("Persisting the entry: {}", request);
-		repository.save(request);
+		return repository.save(request);
 	}
 
 	/**
@@ -55,6 +55,17 @@ public class LoginService {
 	public void deleteById(Long id) {
 		log.info("Deleting the entry {}.", id);
 		repository.deleteById(id);
+	}
+
+	/**
+	 * Validate the password according to the rules setted in the Yalm configuration file.
+	 * 
+	 * @param password The password to be validated
+	 * @return <b>True</b> if the password is acceptable, or <b>False</b> otherwise.
+	 */
+	public boolean validPassword(String password) {
+		// TODO: set the rules in the configuration file, and read them here.
+		return true;
 	}
 
 }
